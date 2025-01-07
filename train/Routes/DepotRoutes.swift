@@ -53,22 +53,22 @@ let depotRoutes: [DepotRoute] = [
     DepotRoute(routeName: "Вековка-Вязьма", locomotive: "ВЛ10У СМЕТ", yavkaToStart: 15, startToEnd: 28, endToKP: 14, kpToDeparture: 58, arrivalToKP: 46, kpToStartHandover: 5, startToEndHandover: 28, handoverToBrigade: 15),
 
     // Вязьма-Ржев
-    DepotRoute(routeName: "Вязьма-Ржев", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 25, startToEnd: 20, endToKP: 16, kpToDeparture: 51, arrivalToKP: 32, kpToStartHandover: 3, startToEndHandover: 20, handoverToBrigade: 10),
+    DepotRoute(routeName: "Вязьма-Ржев", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 25, startToEnd: 20, endToKP: 16, kpToDeparture: 51, arrivalToKP: 32, kpToStartHandover: 3, startToEndHandover: 20, handoverToBrigade: 10),
     DepotRoute(routeName: "Вязьма-Ржев", locomotive: "3М62", yavkaToStart: 25, startToEnd: 24, endToKP: 17, kpToDeparture: 51, arrivalToKP: 33, kpToStartHandover: 3, startToEndHandover: 24, handoverToBrigade: 10),
 
     // Ржев-Вязьма
-    DepotRoute(routeName: "Ржев-Вязьма", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 22, startToEnd: 20, endToKP: 13, kpToDeparture: 53, arrivalToKP: 61, kpToStartHandover: 9, startToEndHandover: 20, handoverToBrigade: 15),
+    DepotRoute(routeName: "Ржев-Вязьма", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 22, startToEnd: 20, endToKP: 13, kpToDeparture: 53, arrivalToKP: 61, kpToStartHandover: 9, startToEndHandover: 20, handoverToBrigade: 15),
     DepotRoute(routeName: "Ржев-Вязьма", locomotive: "3М62", yavkaToStart: 22, startToEnd: 24, endToKP: 13, kpToDeparture: 54, arrivalToKP: 63, kpToStartHandover: 9, startToEndHandover: 24, handoverToBrigade: 15),
 
     // Вязьма-Калуга
-    DepotRoute(routeName: "Вязьма-Калуга", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 25, startToEnd: 20, endToKP: 16, kpToDeparture: 54, arrivalToKP: 32, kpToStartHandover: 6, startToEndHandover: 20, handoverToBrigade: 9),
+    DepotRoute(routeName: "Вязьма-Калуга", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 25, startToEnd: 20, endToKP: 16, kpToDeparture: 54, arrivalToKP: 32, kpToStartHandover: 6, startToEndHandover: 20, handoverToBrigade: 9),
 
     // Калуга-Вязьма
-    DepotRoute(routeName: "Калуга-Вязьма", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 13, startToEnd: 20, endToKP: 14, kpToDeparture: 54, arrivalToKP: 61, kpToStartHandover: 9, startToEndHandover: 20, handoverToBrigade: 15),
+    DepotRoute(routeName: "Калуга-Вязьма", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 13, startToEnd: 20, endToKP: 14, kpToDeparture: 54, arrivalToKP: 61, kpToStartHandover: 9, startToEndHandover: 20, handoverToBrigade: 15),
 
     // Вязьма-Смоленск
-    DepotRoute(routeName: "Вязьма-Смоленск", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 25, startToEnd: 20, endToKP: 16, kpToDeparture: 54, arrivalToKP: 38, kpToStartHandover: 4, startToEndHandover: 20, handoverToBrigade: 14),
+    DepotRoute(routeName: "Вязьма-Смоленск", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 25, startToEnd: 20, endToKP: 16, kpToDeparture: 54, arrivalToKP: 38, kpToStartHandover: 4, startToEndHandover: 20, handoverToBrigade: 14),
 
     // Смоленск-Вязьма
-    DepotRoute(routeName: "Смоленск-Вязьма", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 12, startToEnd: 20, endToKP: 12, kpToDeparture: 59, arrivalToKP: 61, kpToStartHandover: 9, startToEndHandover: 20, handoverToBrigade: 15)
+    DepotRoute(routeName: "Смоленск-Вязьма", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 12, startToEnd: 20, endToKP: 12, kpToDeparture: 59, arrivalToKP: 61, kpToStartHandover: 9, startToEndHandover: 20, handoverToBrigade: 15)
 ]

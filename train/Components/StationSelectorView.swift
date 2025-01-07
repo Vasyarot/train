@@ -16,6 +16,7 @@ struct StationSelectorView: View {
                 .padding(.top)
 
             if let selectedStationValue = selectedStation {
+                // Показываем выбранную станцию с возможностью изменения
                 HStack {
                     Text(selectedStationValue)
                         .font(.title2)
@@ -25,6 +26,7 @@ struct StationSelectorView: View {
                     Spacer()
                     Button(action: {
                         selectedStation = nil
+                        otherSelectedStation = nil // Сброс выбора в другом списке
                     }) {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.red)
@@ -33,6 +35,7 @@ struct StationSelectorView: View {
                     }
                 }
             } else {
+                // Показываем список станций для выбора
                 ScrollView {
                     ForEach(filteredStations(), id: \.self) { station in
                         Button(action: {
@@ -53,33 +56,23 @@ struct StationSelectorView: View {
 
     // Фильтруем станции, исключая выбранную в другом поле
     func filteredStations() -> [String] {
-        return allStations.filter { $0 != excludedStation }
+        if let excludedStation = excludedStation {
+            // Если есть исключенная станция, показываем все станции, кроме нее
+            return allStations.filter { $0 != excludedStation }
+        } else {
+            // Если исключенной станции нет, показываем все станции
+            return allStations
+        }
     }
 
     // Обновляем выбор в другом поле
     func updateOtherStationSelection(_ selectedStation: String) {
         if selectedStation == "Вязьма" {
-            // Если выбрана Вязьма, в другом поле она исчезает
+            // Если выбрана Вязьма, в другом поле можно выбрать любую станцию, кроме Вязьмы
             otherSelectedStation = nil
-        } else if otherSelectedStation == nil {
-            // Если в другом поле ничего не выбрано, выбираем Вязьма
+        } else {
+            // Если выбрана другая станция, в другом поле можно выбрать только Вязьму
             otherSelectedStation = "Вязьма"
-        }
-
-        // Блокировка несовместимых станций
-        let group1 = ["Смоленск", "Ржев", "Калуга"]
-        let group2 = ["Бекасово", "Рыбное", "Вековка"]
-
-        if group1.contains(selectedStation) {
-            // Если выбрана станция из группы 1, блокируем станции из группы 2
-            if let otherStation = otherSelectedStation, group2.contains(otherStation) {
-                self.otherSelectedStation = nil
-            }
-        } else if group2.contains(selectedStation) {
-            // Если выбрана станция из группы 2, блокируем станции из группы 1
-            if let otherStation = otherSelectedStation, group1.contains(otherStation) {
-                self.otherSelectedStation = nil
-            }
         }
     }
 }

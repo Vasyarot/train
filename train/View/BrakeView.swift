@@ -1,3 +1,4 @@
+// Views/BrakeView.swift
 import SwiftUI
 
 struct BrakeView: View {
@@ -66,7 +67,9 @@ struct BrakeView: View {
                         }
                     } else {
                         // Отображение таблицы с данными
-                        BrakeTableView(selectedStation: selectedStation!, selectedTestType: selectedTestType!)
+                        if let station = selectedStation, let testType = selectedTestType {
+                            BrakeTableView(selectedStation: station, selectedTestType: testType)
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

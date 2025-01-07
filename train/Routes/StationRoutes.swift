@@ -53,22 +53,22 @@ let stationRoutes: [StationRoute] = [
     StationRoute(routeName: "Вековка-Вязьма", locomotive: "ВЛ10У СМЕТ", yavkaToStart: 38, startToEnd: 16, kp: "Ходом", endToDeparture: 25, arrivalToStartHandover: "57", kpArrival: "Ходом", startToEndHandover: 16, handoverToBrigade: "16"),
 
     // Вязьма-Ржев
-    StationRoute(routeName: "Вязьма-Ржев", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 29, startToEnd: 8, kp: "Ходом", endToDeparture: 45, arrivalToStartHandover: "30", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "17"),
+    StationRoute(routeName: "Вязьма-Ржев", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 29, startToEnd: 8, kp: "Ходом", endToDeparture: 45, arrivalToStartHandover: "30", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "17"),
     StationRoute(routeName: "Вязьма-Ржев", locomotive: "3М62", yavkaToStart: 29, startToEnd: 13, kp: "Ходом", endToDeparture: 45, arrivalToStartHandover: "30", kpArrival: "Ходом", startToEndHandover: 13, handoverToBrigade: "17"),
 
     // Ржев-Вязьма
-    StationRoute(routeName: "Ржев-Вязьма", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 38, startToEnd: 8, kp: "Ходом", endToDeparture: 38, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "27"),
+    StationRoute(routeName: "Ржев-Вязьма", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 38, startToEnd: 8, kp: "Ходом", endToDeparture: 38, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "27"),
     StationRoute(routeName: "Ржев-Вязьма", locomotive: "3М62", yavkaToStart: 38, startToEnd: 13, kp: "Ходом", endToDeparture: 38, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 13, handoverToBrigade: "27"),
 
     // Вязьма-Калуга
-    StationRoute(routeName: "Вязьма-Калуга", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 29, startToEnd: 8, kp: "Ходом", endToDeparture: 45, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "16"),
+    StationRoute(routeName: "Вязьма-Калуга", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 29, startToEnd: 8, kp: "Ходом", endToDeparture: 45, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "16"),
 
     // Калуга-Вязьма
-    StationRoute(routeName: "Калуга-Вязьма", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 20, startToEnd: 8, kp: "Ходом", endToDeparture: 39, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "27"),
+    StationRoute(routeName: "Калуга-Вязьма", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 20, startToEnd: 8, kp: "Ходом", endToDeparture: 39, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "27"),
 
     // Вязьма-Смоленск
-    StationRoute(routeName: "Вязьма-Смоленск", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 29, startToEnd: 8, kp: "Ходом", endToDeparture: 45, arrivalToStartHandover: "30", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "15"),
+    StationRoute(routeName: "Вязьма-Смоленск", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 29, startToEnd: 8, kp: "Ходом", endToDeparture: 45, arrivalToStartHandover: "30", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "15"),
 
     // Смоленск-Вязьма
-    StationRoute(routeName: "Смоленск-Вязьма", locomotive: "2М62, 2ТЭ25КМ", yavkaToStart: 20, startToEnd: 8, kp: "Ходом", endToDeparture: 39, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "27")
+    StationRoute(routeName: "Смоленск-Вязьма", locomotive: "2М62 / 2ТЭ25КМ", yavkaToStart: 20, startToEnd: 8, kp: "Ходом", endToDeparture: 39, arrivalToStartHandover: "12", kpArrival: "Ходом", startToEndHandover: 8, handoverToBrigade: "27")
 ]

@@ -1,7 +1,6 @@
 // Views/BrakeTableView.swift
 import SwiftUI
 
-// Определение структуры BrakeTest
 struct BrakeTest: Identifiable {
     let id = UUID()
     let route: String
