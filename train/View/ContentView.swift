@@ -1,44 +1,32 @@
-// Main.swift
+// Views/ContentView.swift
 import SwiftUI
 
-// MARK: - Основное View с TabBar
-
-struct MainView: View {
-    @State private var selectedTab: Int = 0 // Для управления TabBar
-
-    var body: some View {
-        // Таб-бар должен быть корневым элементом
-        TabView(selection: $selectedTab) {
-            // Вкладка "Домой"
-            ContentView()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Домой")
-                }
-                .tag(0)
-
-            // Вкладка "Настройки"
-            SettingsView() // Используем SettingsView из SettingsView.swift
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
-                    Text("Настройки")
-                }
-                .tag(1)
-        }
-    }
+struct Category: Identifiable {
+    let id = UUID()
+    let name: String
 }
 
-// MARK: - Основной ContentView
-
 struct ContentView: View {
-    @State private var selectedMainDepot: String? = "Вязьма"
+    @State private var selectedMainDepot: String? = "Вязьма" // Депо по умолчанию
     @State private var selectedCategory: Category? = nil
     @State private var showTimeTable = false
+    @State private var showCalculationsTable = false
 
     @State private var selectedDepartureStation: String? = nil
     @State private var selectedArrivalStation: String? = nil
     @State private var selectedLocomotive: String? = nil
     @State private var selectedPath: String? = nil
+
+    // Данные для отображения
+    let categories = [
+        Category(name: "Нормы времени"),
+        Category(name: "Пробы тормозов"),
+        Category(name: "Таблица расчетов")
+    ]
+
+    let allStations = ["Бекасово", "Вязьма", "Ржев", "Рыбное", "Вековка", "Калуга", "Смоленск"]
+    let allLocomotives = ["ВЛ10У", "ВЛ10 КРП / 2ЭС6", "3ВЛ11", "ВЛ10У СМЕТ", "2М62 / 2ТЭ25КМ", "3М62"]
+    let paths = ["Деповские пути", "Станционные пути"]
 
     var body: some View {
         NavigationView {
@@ -55,7 +43,7 @@ struct ContentView: View {
                                 .padding(.top)
                             Spacer()
                             Button(action: {
-                                self.selectedMainDepot = nil
+                                self.selectedMainDepot = nil // Сброс выбора депо
                             }) {
                                 Image(systemName: "x.circle.fill")
                                     .foregroundColor(.red)
@@ -65,35 +53,36 @@ struct ContentView: View {
                         .padding()
 
                         // Список категорий
-                        List(categories, id: \.id) { category in
+                        List(categories) { category in
                             Button(action: {
                                 selectedCategory = category
                             }) {
                                 Text(category.name)
                                     .foregroundColor(.blue)
                                     .font(.title2)
+                                    .padding()
                             }
                         }
                         .navigationTitle("Категории")
-
-                        // Кнопка для перехода к таблице расчетов
-                        Button(action: {
-                            selectedCategory = Category(name: "Таблица расчетов")
-                        }) {
-                            Text("Таблица расчетов")
-                                .font(.title2)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        .padding()
                     }
                 } else {
                     // Если выбрана категория "Пробы тормозов", показываем BrakeView
                     if selectedCategory?.name == "Пробы тормозов" {
                         BrakeView() // Отображаем интерфейс для проверки тормозов
+                    } else if selectedCategory?.name == "Таблица расчетов" {
+                        // Если выбрана категория "Таблица расчетов", показываем RouteSelectionView
+                        RouteSelectionView(
+                            selectedMainDepot: $selectedMainDepot,
+                            allStations: allStations,
+                            allLocomotives: allLocomotives,
+                            paths: paths,
+                            selectedCategory: $selectedCategory,
+                            showTimeTable: $showCalculationsTable,
+                            selectedDepartureStation: $selectedDepartureStation,
+                            selectedArrivalStation: $selectedArrivalStation,
+                            selectedLocomotive: $selectedLocomotive,
+                            selectedPath: $selectedPath
+                        )
                     } else {
                         // Иначе показываем RouteSelectionView для выбора маршрута
                         RouteSelectionView(
@@ -106,15 +95,24 @@ struct ContentView: View {
                             selectedDepartureStation: $selectedDepartureStation,
                             selectedArrivalStation: $selectedArrivalStation,
                             selectedLocomotive: $selectedLocomotive,
-                            selectedPath: $selectedPath,
-                            routeTimes: selectedPath == "Деповские пути" ? depotRoutes : stationRoutes
+                            selectedPath: $selectedPath
                         )
                     }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .navigationBarTitle("Главное меню", displayMode: .inline)
+            .navigationBarItems(leading: Button(action: {
+                // Сброс всех состояний
+                selectedCategory = nil
+                selectedDepartureStation = nil
+                selectedArrivalStation = nil
+                selectedLocomotive = nil
+                selectedPath = nil
+            }) {
+                Image(systemName: "house.fill")
+                    .foregroundColor(.blue)
+            })
             .sheet(isPresented: $showTimeTable) {
-                // Показываем таблицу времени, если все данные выбраны
                 if let selectedPath = selectedPath,
                    let selectedDepartureStation = selectedDepartureStation,
                    let selectedArrivalStation = selectedArrivalStation,
@@ -123,24 +121,31 @@ struct ContentView: View {
                         selectedPath: selectedPath,
                         selectedDepartureStation: selectedDepartureStation,
                         selectedArrivalStation: selectedArrivalStation,
-                        selectedLocomotive: selectedLocomotive,
-                        routeTimes: selectedPath == "Деповские пути" ? depotRoutes : stationRoutes
+                        selectedLocomotive: selectedLocomotive
                     )
                 } else {
-                    // Если данные не выбраны, показываем ошибку
+                    Text("Ошибка: Не все данные выбраны")
+                        .font(.largeTitle)
+                        .padding()
+                }
+            }
+            .sheet(isPresented: $showCalculationsTable) {
+                if let selectedPath = selectedPath,
+                   let selectedDepartureStation = selectedDepartureStation,
+                   let selectedArrivalStation = selectedArrivalStation,
+                   let selectedLocomotive = selectedLocomotive {
+                    CalculationsView(
+                        selectedPath: selectedPath,
+                        selectedDepartureStation: selectedDepartureStation,
+                        selectedArrivalStation: selectedArrivalStation,
+                        selectedLocomotive: selectedLocomotive
+                    )
+                } else {
                     Text("Ошибка: Не все данные выбраны")
                         .font(.largeTitle)
                         .padding()
                 }
             }
         }
-    }
-}
-
-// MARK: - Preview
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }
