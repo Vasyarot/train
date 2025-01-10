@@ -5,6 +5,7 @@ struct TimesView: View {
     @Binding var selectedArrivalStation: String?
     @Binding var selectedLocomotive: String?
     @Binding var selectedPath: String?
+    @Binding var showModal: Bool
 
     let allStations: [String]
     let allLocomotives: [String]
@@ -30,6 +31,8 @@ struct TimesView: View {
                     Button(action: {
                         selectedDepartureStation = nil
                         selectedArrivalStation = nil
+                        selectedLocomotive = nil
+                        selectedPath = nil
                     }) {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.red)
@@ -56,6 +59,8 @@ struct TimesView: View {
                     Spacer()
                     Button(action: {
                         selectedArrivalStation = nil
+                        selectedLocomotive = nil
+                        selectedPath = nil
                     }) {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.red)
@@ -81,6 +86,7 @@ struct TimesView: View {
                     Spacer()
                     Button(action: {
                         selectedLocomotive = nil
+                        selectedPath = nil
                     }) {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.red)
@@ -125,7 +131,7 @@ struct TimesView: View {
                         $0.routeName == "\(departure)-\(arrival)" &&
                         $0.locomotive == locomotive
                     }) {
-                        TimesTableView(route: route)
+                        ModalCalculationsView(route: route)
                     } else {
                         Text("Данные для выбранного маршрута и локомотива не найдены.")
                             .font(.headline)
@@ -137,7 +143,7 @@ struct TimesView: View {
                         $0.routeName == "\(departure)-\(arrival)" &&
                         $0.locomotive == locomotive
                     }) {
-                        StationTimesTableView(route: route)
+                        ModalCalculationsView(route: route)
                     } else {
                         Text("Данные для выбранного маршрута и локомотива не найдены.")
                             .font(.headline)

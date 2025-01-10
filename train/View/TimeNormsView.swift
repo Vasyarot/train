@@ -5,7 +5,7 @@ struct TimeNormsView: View {
     @Binding var selectedArrivalStation: String?
     @Binding var selectedLocomotive: String?
     @Binding var selectedPath: String?
-    @Binding var selectedDate: Date
+    @Binding var showModal: Bool
 
     let allStations: [String]
     let allLocomotives: [String]
@@ -119,31 +119,46 @@ struct TimeNormsView: View {
                 }
                 .padding()
             }
-
-            // Выбор даты и времени
+        }
+        .onChange(of: selectedPath) { _ in
             if selectedDepartureStation != nil && selectedArrivalStation != nil && selectedLocomotive != nil && selectedPath != nil {
-                VStack {
-                    Text("Выберите дату и время")
-                        .font(.headline)
-                        .padding()
-
-                    DatePicker("Дата и время", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
-                        .datePickerStyle(GraphicalDatePickerStyle())
-                        .padding()
+                showModal = true
+            }
+        }
+        .sheet(isPresented: $showModal) {
+            if let departure = selectedDepartureStation,
+               let arrival = selectedArrivalStation,
+               let locomotive = selectedLocomotive,
+               let path = selectedPath {
+                
+                if path == "Деповские пути" {
+                    if let route = depotRoutes.first(where: {
+                        $0.routeName == "\(departure)-\(arrival)" &&
+                        $0.locomotive == locomotive
+                    }) {
+                        ModalCalculationsView(route: route)
+                    } else {
+                        Text("Данные для выбранного маршрута и локомотива не найдены.")
+                            .font(.headline)
+                            .foregroundColor(.red)
+                            .padding()
+                    }
+                } else if path == "Станционные пути" {
+                    if let route = stationRoutes.first(where: {
+                        $0.routeName == "\(departure)-\(arrival)" &&
+                        $0.locomotive == locomotive
+                    }) {
+                        ModalCalculationsView(route: route)
+                    } else {
+                        Text("Данные для выбранного маршрута и локомотива не найдены.")
+                            .font(.headline)
+                            .foregroundColor(.red)
+                            .padding()
+                    }
                 }
             }
         }
-        .onChange(of: selectedDepartureStation) { _ in
-            selectedArrivalStation = nil
-            selectedLocomotive = nil
-            selectedPath = nil
-        }
-        .onChange(of: selectedArrivalStation) { _ in
-            selectedLocomotive = nil
-            selectedPath = nil
-        }
-        .onChange(of: selectedLocomotive) { _ in
-            selectedPath = nil
-        }
+        .navigationTitle("Нормы времени")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

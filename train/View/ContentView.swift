@@ -4,6 +4,11 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedMainDepot: String? = "Вязьма"
     @State private var selectedCategory: Category? = nil
+    @State private var selectedDepartureStation: String? = nil
+    @State private var selectedArrivalStation: String? = nil
+    @State private var selectedLocomotive: String? = nil
+    @State private var selectedPath: String? = nil
+    @State private var showTimeTable: Bool = false
 
     let categories = [
         Category(name: "Нормы времени"),
@@ -31,14 +36,31 @@ struct ContentView: View {
                         )
                     } else {
                         // Отображаем выбранную категорию
-                        SelectedCategoryView(
-                            selectedCategory: $selectedCategory,
-                            selectedMainDepot: selectedMainDepot ?? "",
-                            timeAndCalculationStations: timeAndCalculationStations,
-                            brakeStations: brakeStations,
-                            allLocomotives: allLocomotives,
-                            paths: paths
-                        )
+                        if selectedCategory?.name == "Нормы времени" {
+                            TimeNormsView(
+                                selectedDepartureStation: $selectedDepartureStation,
+                                selectedArrivalStation: $selectedArrivalStation,
+                                selectedLocomotive: $selectedLocomotive,
+                                selectedPath: $selectedPath,
+                                showModal: $showTimeTable,
+                                allStations: timeAndCalculationStations,
+                                allLocomotives: allLocomotives,
+                                paths: paths
+                            )
+                        } else if selectedCategory?.name == "Таблица расчетов" {
+                            CalculationsView(
+                                selectedDepartureStation: $selectedDepartureStation,
+                                selectedArrivalStation: $selectedArrivalStation,
+                                selectedLocomotive: $selectedLocomotive,
+                                selectedPath: $selectedPath,
+                                showModal: $showTimeTable,
+                                allStations: timeAndCalculationStations,
+                                allLocomotives: allLocomotives,
+                                paths: paths
+                            )
+                        } else if selectedCategory?.name == "Проба тормозов" {
+                            BrakeView()
+                        }
                     }
                 }
             }
