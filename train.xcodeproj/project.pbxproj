@@ -72,9 +72,33 @@
 		E58A09C32D2CBF9000B177E4 /* RoutesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoutesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E5B049382D2DF6FB004A6B3C /* Exceptions for "train" folder in "train" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Contents.json,
+			);
+			target = E54730F12D247BE900507E92 /* train */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		E5B049392D2DF6FB004A6B3C /* Exceptions for "train" folder in "Compile Sources" phase from "train" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = E54730EE2D247BE900507E92 /* Sources */;
+			membershipExceptions = (
+				Contents.json,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E54730F42D247BE900507E92 /* train */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E5B049382D2DF6FB004A6B3C /* Exceptions for "train" folder in "train" target */,
+				E5B049392D2DF6FB004A6B3C /* Exceptions for "train" folder in "Compile Sources" phase from "train" target */,
+			);
 			path = train;
 			sourceTree = "<group>";
 		};
@@ -732,7 +756,6 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GJXK78ZJNH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -769,7 +792,6 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GJXK78ZJNH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

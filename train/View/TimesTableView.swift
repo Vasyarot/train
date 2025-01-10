@@ -1,4 +1,3 @@
-// Routes/TimesTableView.swift
 import SwiftUI
 
 struct TimesTableView: View {
@@ -18,7 +17,7 @@ struct TimesTableView: View {
 
             // Таблица с временными интервалами
             VStack(spacing: 0) {
-                ForEach(getStages(route: route), id: \.name) { stage in
+                ForEach(route.stages, id: \.name) { stage in
                     HStack {
                         Text(stage.name)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -45,19 +44,5 @@ struct TimesTableView: View {
             .shadow(radius: 2)
         }
         .padding()
-    }
-
-    // Функция для получения этапов маршрута
-    func getStages(route: DepotRoute) -> [RouteStage] {
-        return [
-            RouteStage(name: "От явки до начала приёмки", time: "\(route.yavkaToStart) мин"),
-            RouteStage(name: "От начала приёмки до окончания приёмки", time: "\(route.startToEnd) мин"),
-            RouteStage(name: "От окончания приёмки до КП", time: "\(route.endToKP) мин"),
-            RouteStage(name: "От КП до отправления", time: "\(route.kpToDeparture) мин"),
-            RouteStage(name: "От прибытия до КП", time: "\(route.arrivalToKP) мин"),
-            RouteStage(name: "От КП до начала сдачи локомотива", time: "\(route.kpToStartHandover) мин"),
-            RouteStage(name: "От начала сдачи до окончания сдачи локомотива", time: "\(route.startToEndHandover) мин"),
-            RouteStage(name: "От сдачи локомотива до сдачи бригады", time: "\(route.handoverToBrigade) мин")
-        ]
     }
 }

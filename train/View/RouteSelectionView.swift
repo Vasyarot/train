@@ -20,7 +20,6 @@ struct RouteSelectionView: View {
                     .font(.largeTitle)
                     .padding()
 
-                // Выбор станции отправления
                 StationSelectorView(
                     title: "Станция отправления",
                     selectedStation: $selectedDepartureStation,
@@ -29,7 +28,6 @@ struct RouteSelectionView: View {
                     otherSelectedStation: $selectedArrivalStation
                 )
 
-                // Выбор станции прибытия
                 StationSelectorView(
                     title: "Станция прибытия",
                     selectedStation: $selectedArrivalStation,
@@ -38,7 +36,6 @@ struct RouteSelectionView: View {
                     otherSelectedStation: $selectedDepartureStation
                 )
 
-                // Выбор локомотива
                 LocomotiveSelectorView(
                     selectedLocomotive: $selectedLocomotive,
                     allLocomotives: allLocomotives,
@@ -46,14 +43,12 @@ struct RouteSelectionView: View {
                     selectedArrivalStation: selectedArrivalStation
                 )
 
-                // Выбор пути
                 PathSelectorView(
                     selectedPath: $selectedPath,
                     paths: paths,
                     showTimeTable: $showTimeTable
                 )
 
-                // Кнопка для перехода к таблице времени
                 if selectedDepartureStation != nil && selectedArrivalStation != nil && selectedLocomotive != nil && selectedPath != nil {
                     Button(action: {
                         showTimeTable = true

@@ -3,17 +3,16 @@ import SwiftUI
 
 struct BrakeView: View {
     @State private var selectedTestType: String? = nil
+    @State private var selectedTrainType: String? = nil
     @State private var selectedStation: String? = nil
 
-    // Уникальный список станций для "Пробы тормозов"
-    let stations = ["Вязьма", "Мещерская", "Туманово", "Гагарин", "Уваровка", "Бородино", "Можайск", "Дорохово", "Тучково", "Кубинка-1", "Акулово", "Пожитково", "Бекасово-1", "Бекасово", "Вязьма-Новотожская", "Новодугинская", "Сычёвка", "Осуга", "Ржев"]
+    let stations = ["Вязьма", "Мещёрская", "Туманово", "Гагарин", "Уваровка", "Бородино", "Можайск", "Дорохово", "Тучково", "Кубинка-1", "Акулово", "Пожитково", "Бекасово"]
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     if selectedTestType == nil {
-                        // Выбор типа пробы: Основная или Зимняя
                         VStack {
                             Text("Выберите тип пробы тормозов")
                                 .font(.largeTitle)
@@ -27,9 +26,13 @@ struct BrakeView: View {
                                     .font(.title2)
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Color.blue)
+                                    .background(Color.black)
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.blue, lineWidth: 2)
+                                    )
                             }
                             .padding()
 
@@ -40,14 +43,58 @@ struct BrakeView: View {
                                     .font(.title2)
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Color.blue)
+                                    .background(Color.black)
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.blue, lineWidth: 2)
+                                    )
+                            }
+                            .padding()
+                        }
+                    } else if selectedTrainType == nil {
+                        VStack {
+                            Text("Выберите тип поезда")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .padding()
+
+                            Button(action: {
+                                selectedTrainType = "Грузовые поезда"
+                            }) {
+                                Text("Грузовые поезда")
+                                    .font(.title2)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.black)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.blue, lineWidth: 2)
+                                    )
+                            }
+                            .padding()
+
+                            Button(action: {
+                                selectedTrainType = "Пассажирские поезда"
+                            }) {
+                                Text("Пассажирские поезда")
+                                    .font(.title2)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.black)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.blue, lineWidth: 2)
+                                    )
                             }
                             .padding()
                         }
                     } else if selectedStation == nil {
-                        // Выбор станции
                         VStack {
                             Text("Выберите станцию")
                                 .font(.largeTitle)
@@ -66,9 +113,10 @@ struct BrakeView: View {
                             .navigationTitle("Станции")
                         }
                     } else {
-                        // Отображение таблицы с данными
-                        if let station = selectedStation, let testType = selectedTestType {
-                            BrakeTableView(selectedStation: station, selectedTestType: testType)
+                        if selectedTrainType == "Грузовые поезда" {
+                            FreightBrakeTableView(selectedStation: selectedStation!, selectedTestType: selectedTestType!)
+                        } else {
+                            PassengerBrakeTableView(selectedStation: selectedStation!, selectedTestType: selectedTestType!)
                         }
                     }
                 }

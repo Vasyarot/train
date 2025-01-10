@@ -16,7 +16,6 @@ struct StationSelectorView: View {
                 .padding(.top)
 
             if let selectedStationValue = selectedStation {
-                // Показываем выбранную станцию с возможностью изменения
                 HStack {
                     Text(selectedStationValue)
                         .font(.title2)
@@ -26,7 +25,7 @@ struct StationSelectorView: View {
                     Spacer()
                     Button(action: {
                         selectedStation = nil
-                        otherSelectedStation = nil // Сброс выбора в другом списке
+                        otherSelectedStation = nil
                     }) {
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.red)
@@ -35,7 +34,6 @@ struct StationSelectorView: View {
                     }
                 }
             } else {
-                // Показываем список станций для выбора
                 ScrollView {
                     ForEach(filteredStations(), id: \.self) { station in
                         Button(action: {
@@ -54,24 +52,18 @@ struct StationSelectorView: View {
         }
     }
 
-    // Фильтруем станции, исключая выбранную в другом поле
     func filteredStations() -> [String] {
         if let excludedStation = excludedStation {
-            // Если есть исключенная станция, показываем все станции, кроме нее
             return allStations.filter { $0 != excludedStation }
         } else {
-            // Если исключенной станции нет, показываем все станции
             return allStations
         }
     }
 
-    // Обновляем выбор в другом поле
     func updateOtherStationSelection(_ selectedStation: String) {
         if selectedStation == "Вязьма" {
-            // Если выбрана Вязьма, в другом поле можно выбрать любую станцию, кроме Вязьмы
             otherSelectedStation = nil
         } else {
-            // Если выбрана другая станция, в другом поле можно выбрать только Вязьму
             otherSelectedStation = "Вязьма"
         }
     }

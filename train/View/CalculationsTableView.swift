@@ -1,7 +1,8 @@
+// Views/CalculationsTableView.swift
 import SwiftUI
 
-struct StationTimesTableView: View {
-    let route: StationRoute
+struct CalculationsTableView: View {
+    let route: Route
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
